@@ -40,10 +40,25 @@ class SerieRepositorio
     }
 
 
+    public function buscarIdporNome(string $nome): int|false // Usar tipo de retorno mais abrangente
+{
+    $sql = 'SELECT idSerie FROM Serie WHERE nome = :nome';
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->bindValue(':nome', $nome, PDO::PARAM_STR);
+    $stmt->execute();
+
+    $id = $stmt->fetch(PDO::FETCH_ASSOC); // Obtém o resultado como um array associativo
+
+    if ($id === false) { // Verifica se a consulta retornou algum resultado
+        return false; // Retorna false se nenhum resultado for encontrado
+    }
+
+    return $id['idSerie']; // Retorna o valor do 'id'
+}
 
     public function buscarPorId(int $id): ?Serie
     {
-        $sql = 'SELECT * FROM Serie WHERE id = :id';
+        $sql = 'SELECT * FROM Serie WHERE idSerie = :id';
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
@@ -55,9 +70,9 @@ class SerieRepositorio
         }
 
         return new Serie(
-            $serieArray['id'],
+            $serieArray['idSerie'],
             $serieArray['nome'],
-            $serieArray['ano_lancamento'],
+            $serieArray['anoLancamento'],
             $serieArray['genero'],
             $serieArray['temporadas'],
             $serieArray['episodiosPorTemporada'],

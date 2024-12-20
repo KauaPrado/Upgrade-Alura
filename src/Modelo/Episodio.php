@@ -15,15 +15,14 @@ class Episodio implements Avaliavel
         ?int $idEpisodio,
         Serie $serie,
         string $nome,
-        int $numero
-
-        dwsdqa
+        int $numero ,
+        int $idSerie
     ) {
         $this->idEpisodio = $idEpisodio;
         $this->serie = $serie->getNome();
         $this->nome = $nome;
         $this->numero = $numero;
-        $this->idSerie = $serie->getId();
+        $this->idSerie = $idSerie;
     }
 
     // Getters e Setters
