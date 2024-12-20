@@ -13,13 +13,13 @@ class Episodio implements Avaliavel
 
     public function __construct(
         ?int $idEpisodio,
-        Serie $serie,
+        String $serie,
         string $nome,
         int $numero ,
         int $idSerie
     ) {
         $this->idEpisodio = $idEpisodio;
-        $this->serie = $serie->getNome();
+        $this->serie = $serie;
         $this->nome = $nome;
         $this->numero = $numero;
         $this->idSerie = $idSerie;

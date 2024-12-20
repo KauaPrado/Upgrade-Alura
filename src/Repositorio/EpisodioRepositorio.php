@@ -37,4 +37,29 @@ class EpisodioRepositorio
 
         return $stmt->execute();
     }
+
+
+    public function buscarEpisodio(string $serie, int $numero): ?Episodio
+    {
+        $sql = 'SELECT * FROM Episodio
+                WHERE serie = :serie and numero = :numero';
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':serie', $serie, PDO::PARAM_STR);
+        $stmt->bindValue(':numero', $numero, PDO::PARAM_INT);
+        $stmt->execute();
+        
+        $serieArray = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$serieArray) {
+            return null; // Retorna null se a série não for encontrada
+        }
+
+        return new Episodio(
+            $serieArray['idEpisodio'],
+            $serieArray['serie'],
+            $serieArray['nome'],
+            $serieArray['numero'],
+            $serieArray['idSerie']
+        );
+    }
 }

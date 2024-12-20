@@ -3,6 +3,7 @@
 namespace ScreenMatch\Repositorio; 
 
 use PDO;
+use ScreenMatch\Modelo\Episodio;
 use ScreenMatch\Modelo\Serie;
 
 class SerieRepositorio
@@ -78,6 +79,27 @@ class SerieRepositorio
             $serieArray['episodiosPorTemporada'],
             $serieArray['minutosPorEpisodio']
         );
+    }
+
+    public function listaEpisodios(int $idSerie): array
+    {
+
+        $sql = 'SELECT * FROM Episodio
+                     WHERE idSerie = :idSerie';
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':idSerie', $idSerie, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result= $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $lista = [];
+
+        foreach ($result as $row) {
+            
+            $episodio = new Episodio($row['idEpisodio'], $row['serie'], $row['nome'], $row['numero'], $row['idSerie']);
+            array_push($lista, $episodio);  
+    }
+        return $lista;
+
     }
 
 }

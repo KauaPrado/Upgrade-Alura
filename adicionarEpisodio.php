@@ -26,7 +26,7 @@ if ($serieRepositorio->adicionar($serie)) {
     echo "Falha ao inserir a serie.";
 }
 
-$episodio = new Episodio(null, $serie, "de você, 2000 anos depois",  1, $serieRepositorio->buscarIdporNome("Attack On Titan"));
+$episodio = new Episodio(null, $serie->getNome(), "de você, 2000 anos depois",  1, $serieRepositorio->buscarIdporNome("Attack On Titan"));
 echo "<br>";
 var_dump($serie);
 echo "<br>";

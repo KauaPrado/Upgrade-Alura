@@ -19,7 +19,7 @@ $serie = new Serie(null, 'Mandalorian', "2019", 'Aventura', 3, 10, 40);
 
 $repositorio = new EpisodioRepositorio($pdo);
 
-$episodioSelecionado = $repositorio->buscarEpisodio("Attack on Tiatan", 1);
+$episodioSelecionado = $repositorio->buscarEpisodio("Attack on Titan", 1);
 // if ($repositorio->adicionar($serie)) {
 //     echo "Serie inserido com sucesso!";
 // } else {
