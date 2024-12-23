@@ -37,7 +37,7 @@ $serieRepositorio = new SerieRepositorio($pdo);
 //     echo "Falha ao inserir o episodio.";
 // }
 
-$lista = $serieRepositorio->listaEpisodios(2);
+$lista = $serieRepositorio->listarTodasAsSeries();
 
 //pegando todos os episodios a partir do id da série 
 foreach($lista as $ep)

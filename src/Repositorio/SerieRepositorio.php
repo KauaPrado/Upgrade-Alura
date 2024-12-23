@@ -102,4 +102,13 @@ class SerieRepositorio
 
     }
 
+
+    public function listarTodasAsSeries():array
+    {
+        $sql = 'select nome from Serie';
+        $stmt = $this->pdo->prepare($sql);
+
+        $listaSeries =  $stmt->fetchAll(PDO::FETCH_DEFAULT);
+        return $listaSeries;
+    }
 }
