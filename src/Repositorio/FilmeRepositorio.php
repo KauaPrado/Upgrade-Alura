@@ -25,4 +25,14 @@ class FilmeRepositorio
 
         return $stmt->execute();
     }
+
+    public function listarTododOsFilmes():array
+    {
+        $sql = 'select nome, genero from Filme';
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $listaFilmes =  $stmt->fetchAll(PDO::FETCH_DEFAULT);
+        
+        return $listaFilmes;
+    }
 }
