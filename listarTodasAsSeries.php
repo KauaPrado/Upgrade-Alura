@@ -38,9 +38,11 @@ $serieRepositorio = new SerieRepositorio($pdo);
 // }
 
 $lista = $serieRepositorio->listarTodasAsSeries();
-
+var_dump($lista);
 //pegando todos os episodios a partir do id da série 
-foreach($lista as $ep)
-{
-     echo $ep->getNome();
-}
+if (!empty($lista)) {
+     foreach ($lista as ['nome' => $nomeSerie, 'genero' =>$genero]) { // Desestruturação de array
+         echo $nomeSerie . " |  Genêro: " . $genero . "\n";
+     }
+ }
+ 

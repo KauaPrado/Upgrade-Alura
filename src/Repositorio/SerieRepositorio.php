@@ -105,10 +105,11 @@ class SerieRepositorio
 
     public function listarTodasAsSeries():array
     {
-        $sql = 'select nome from Serie';
+        $sql = 'select nome, genero from Serie';
         $stmt = $this->pdo->prepare($sql);
-
+        $stmt->execute();
         $listaSeries =  $stmt->fetchAll(PDO::FETCH_DEFAULT);
+        
         return $listaSeries;
     }
 }
