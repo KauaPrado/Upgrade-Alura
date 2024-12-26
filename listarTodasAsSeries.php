@@ -43,6 +43,7 @@ var_dump($lista);
 if (!empty($lista)) {
      foreach ($lista as ['nome' => $nomeSerie, 'genero' =>$genero]) { // Desestruturação de array
          echo $nomeSerie . " |  Genêro: " . $genero . "\n";
+         
      }
  }
  
