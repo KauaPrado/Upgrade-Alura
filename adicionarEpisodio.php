@@ -17,16 +17,16 @@ use ScreenMatch\Repositorio\SerieRepositorio;
 
 $pdo = ConnectionCreator::createConnection();
 
-$serie = new Serie(null, 'Attack on Titan', "2013", 'seinen', 4, 20, 20);
+$serie = new Serie(null, 'Mandalorian', "2013", 'seinen', 4, 20, 20);
 
 $serieRepositorio = new SerieRepositorio($pdo);
-if ($serieRepositorio->adicionar($serie)) {
-    echo "Serie inserido com sucesso!";
-} else {
-    echo "Falha ao inserir a serie.";
-}
+// if ($serieRepositorio->adicionar($serie)) {
+//     echo "Serie inserido com sucesso!";
+// } else {
+//     echo "Falha ao inserir a serie.";
+// }
 
-$episodio = new Episodio(null, $serie->getNome(), "de você, 2000 anos depois",  1, $serieRepositorio->buscarIdporNome("Attack On Titan"));
+$episodio = new Episodio(null, $serie->getNome(), "piloto",  1, $serieRepositorio->buscarIdporNome("Mandalorian"));
 echo "<br>";
 var_dump($serie);
 echo "<br>";

@@ -2,9 +2,9 @@
 
 namespace ScreenMatch\Modelo;
 
-abstract class Titulo implements Avaliavel
+abstract class Titulo 
 {
-    use ComAvaliacao;
+    
 
     public function __construct(
         private  string $nome,

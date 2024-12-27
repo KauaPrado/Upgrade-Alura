@@ -1,9 +1,12 @@
 <?php
 
+
+use PDO;
 namespace ScreenMatch\Modelo;
 
 class Filme extends Titulo
 {
+    
     private ?int $id;
     private string $nome;
     private int $anoLancamento;
@@ -80,4 +83,6 @@ class Filme extends Titulo
     {
         $this->duracaoEmMinutos = $duracaoEmMinutos;
     }
+
+    
 }

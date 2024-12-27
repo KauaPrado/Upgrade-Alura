@@ -15,12 +15,18 @@ use ScreenMatch\Modelo\Episodio;
 use PDO;
 use ScreenMatch\Modelo\Filme;
 use ScreenMatch\Repositorio\FilmeRepositorio;
+use ScreenMatch\Repositorio\SerieRepositorio;
+
 
 $pdo = ConnectionCreator::createConnection();
 
 $serie = new Serie(null, 'Attack on Titan', "2013", 'seinen', 4, 20, 20);
 
 $filmeRepositorio = new FilmeRepositorio($pdo);
+
+$serieRepositorio = new SerieRepositorio($pdo);
+
+$episodioRepositorio = new EpisodioRepositorio($pdo);
 // if ($serieRepositorio->adicionar($serie)) {
 //     echo "Serie inserido com sucesso!";
 // } else {
@@ -47,3 +53,6 @@ if (!empty($lista)) {
      }
  }
  
+$filmeRepositorio->avalia(8, 4);
+$serieRepositorio->avalia(8, 5);
+$episodioRepositorio->avalia(9, 2);

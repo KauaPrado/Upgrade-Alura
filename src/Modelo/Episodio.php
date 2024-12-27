@@ -2,9 +2,8 @@
 
 namespace ScreenMatch\Modelo;
 
-class Episodio implements Avaliavel
+class Episodio
 {
-    use ComAvaliacao;
     private ?int $idEpisodio;
     private string $serie;
     private string $nome;

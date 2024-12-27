@@ -3,9 +3,10 @@
 namespace ScreenMatch\Repositorio; 
 
 use PDO;
+use ScreenMatch\Modelo\Avaliavel;
 use ScreenMatch\Modelo\Filme;
 
-class FilmeRepositorio
+class FilmeRepositorio implements Avaliavel
 {
     private $pdo;
 
@@ -35,4 +36,31 @@ class FilmeRepositorio
         
         return $listaFilmes;
     }
+
+    public function avalia(float $nota, int $id): void
+    {
+        $sql = 'UPDATE FILME
+                SET avaliacao = avaliacao + :nota,
+	                numDeAvaliacoes = numDeAvaliacoes+ 1
+                where id_filme = :id;';
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':nota', $nota, PDO::PARAM_STR);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+    }
+
+    public function media(int $id): float
+    {
+        // $sql = 'UPDATE FILME
+        //         SET avaliacao = avaliacao + :nota,
+	    //             numDeAvaliacoes = numDeAvaliacoes+ 1
+        //         where id_filme = :id;';
+        // $stmt = $this->pdo->prepare($sql);
+        // $stmt->bindValue(':nome', $nota, PDO::PARAM_STR);
+        // $stmt->bindValue(':id', $id(), PDO::PARAM_INT);
+        
+        // $stmt->execute();
+        return 2.5;
+    }
+
 }

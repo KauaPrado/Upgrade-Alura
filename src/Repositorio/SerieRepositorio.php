@@ -3,10 +3,11 @@
 namespace ScreenMatch\Repositorio; 
 
 use PDO;
+use ScreenMatch\Modelo\Avaliavel;
 use ScreenMatch\Modelo\Episodio;
 use ScreenMatch\Modelo\Serie;
 
-class SerieRepositorio
+class SerieRepositorio implements Avaliavel
 {
     private $pdo;
 
@@ -112,4 +113,22 @@ class SerieRepositorio
         
         return $listaSeries;
     }
+
+    public function avalia(float $nota, int $id): void
+    {
+        $sql = 'UPDATE Serie
+                SET avaliacao = avaliacao + :nota,
+	                numDeAvaliacoes = numDeAvaliacoes+ 1
+                where idSerie = :id;';
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':nota', $nota, PDO::PARAM_STR);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+    }
+
+    public function media(int $id): float
+    {
+        return 2;
+    }
+
 }
