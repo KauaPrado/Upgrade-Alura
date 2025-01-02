@@ -1,8 +1,8 @@
 <?php
-
+namespace ScreenMatch\Modelo;
 
 use PDO;
-namespace ScreenMatch\Modelo;
+
 
 class Filme extends Titulo
 {

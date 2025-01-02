@@ -51,16 +51,14 @@ class FilmeRepositorio implements Avaliavel
 
     public function media(int $id): float
     {
-        // $sql = 'UPDATE FILME
-        //         SET avaliacao = avaliacao + :nota,
-	    //             numDeAvaliacoes = numDeAvaliacoes+ 1
-        //         where id_filme = :id;';
-        // $stmt = $this->pdo->prepare($sql);
-        // $stmt->bindValue(':nome', $nota, PDO::PARAM_STR);
-        // $stmt->bindValue(':id', $id(), PDO::PARAM_INT);
+        $sql = 'select avaliacao / numDeavaliacoes as media from Filme where id_filme = :id;';
         
-        // $stmt->execute();
-        return 2.5;
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+        // var_dump($resultado);
+        return $resultado["media"];
     }
 
 }

@@ -78,6 +78,13 @@ class EpisodioRepositorio implements Avaliavel
 
     public function media(int $id): float
     {
-        return 2;
+        $sql = 'select avaliacao / numDeavaliacoes as media from Episodio where idEpisodio = :id;';
+        
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+        // var_dump($resultado);
+        return $resultado["media"];
     }
 }

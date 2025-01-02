@@ -56,3 +56,7 @@ if (!empty($lista)) {
 $filmeRepositorio->avalia(8, 4);
 $serieRepositorio->avalia(8, 5);
 $episodioRepositorio->avalia(9, 2);
+
+echo $filmeRepositorio->media((4));
+echo $episodioRepositorio->media(2);
+echo $serieRepositorio->media(5);
